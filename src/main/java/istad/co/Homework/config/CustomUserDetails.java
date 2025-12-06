@@ -16,9 +16,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * Custom UserDetails implementation.
- * Replace the placeholder methods with real data from your database/entity.
+ * UserDetails implementation tailored for the application.
+ * Update these methods to return actual values from your user entity.
  */
+
 @Getter
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -64,7 +65,7 @@ public class CustomUserDetails implements UserDetails {
     }
 
 
-    // Jackson deserialization constructor (for Redis/Session deserialization)
+    // Needed for Jackson to deserialize this class from cached session/Redis data
     @JsonCreator
     public CustomUserDetails(
             @JsonProperty("id") Long id,
@@ -139,7 +140,6 @@ public class CustomUserDetails implements UserDetails {
         return enabled != null && enabled;
     }
 
-    // Convenience methods for full name
     public String getFullName() {
         return givenName + " " + familyName;
     }

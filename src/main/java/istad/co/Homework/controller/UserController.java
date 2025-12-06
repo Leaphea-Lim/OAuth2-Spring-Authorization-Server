@@ -18,6 +18,7 @@ public class UserController {
 
     private final UserService userService;
 
+    //todo: Creates a new user based on the submitted request data
     @PostMapping()
     public ResponseEntity<String> addUser(@Valid @RequestBody CreatedUserRequest createdUser) {
         userService.createdUser(createdUser);

@@ -4,6 +4,7 @@ import istad.co.Homework.domain.Client;
 import istad.co.Homework.repository.ClientRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
@@ -19,12 +20,20 @@ import java.time.Duration;
 import java.util.UUID;
 
 @Component
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class ClientDataInitializer implements CommandLineRunner {
 
-    private final RegisteredClientRepository registeredClientRepository;
     private final PasswordEncoder passwordEncoder;
     private final ClientRepository  clientRepository;
+
+    private final RegisteredClientRepository registeredClientRepository;
+    public ClientDataInitializer(@Qualifier("jpaRegisteredClientRepository") RegisteredClientRepository registeredClientRepository,
+                                 PasswordEncoder passwordEncoder,
+                                 ClientRepository clientRepository) {
+        this.registeredClientRepository = registeredClientRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.clientRepository = clientRepository;
+    }
 
     @Override
     public void run(String... args) throws Exception {

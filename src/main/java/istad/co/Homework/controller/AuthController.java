@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class AuthController {
 
+    //todo: for displaying the login page
     @GetMapping("/login")
     public String login() {
         return "login";

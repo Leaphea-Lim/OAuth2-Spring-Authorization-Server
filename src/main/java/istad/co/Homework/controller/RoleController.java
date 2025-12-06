@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RoleController {
     private final RoleService roleService;
 
+    //todo: Creates a new role using the provided request data
     @PostMapping()
     public ResponseEntity<String> addRole(@RequestBody CreatedRoleRequest createdRoleRequest) {
         roleService.addRole(createdRoleRequest);

@@ -40,10 +40,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void createdUser(CreatedUserRequest created) {
         // Check duplicates
-        if (userRepository.exitsByUsername(created.username())) {
+        if (userRepository.existsByUsername(created.username())) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Username already exists");
         }
-        if (userRepository.exitsByEmail(created.email())) {
+        if (userRepository.existsByEmail(created.email())) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Email already registered");
         }
         List<Role> roleEntities = Optional.ofNullable(created.roles())

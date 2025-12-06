@@ -3,6 +3,7 @@ package istad.co.Homework.service;
 import istad.co.Homework.config.CustomUserDetails;
 import istad.co.Homework.domain.Client;
 import istad.co.Homework.repository.ClientRepository;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.jackson.SecurityJacksonModules;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
@@ -12,6 +13,7 @@ import org.springframework.security.oauth2.server.authorization.jackson.OAuth2Au
 import org.springframework.security.oauth2.server.authorization.settings.ClientSettings;
 import org.springframework.security.oauth2.server.authorization.settings.TokenSettings;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import tools.jackson.core.type.TypeReference;
@@ -25,12 +27,15 @@ import java.util.Map;
 import java.util.Set;
 
 @Component
-public class JpaRegisteredClientRepository implements RegisteredClientRepository {
+@Primary
+public class JpaOAuth2AuthorizationService implements RegisteredClientRepository {
 
     private final ClientRepository clientRepository;
     private final ObjectMapper objectMapper;
 
-    public JpaRegisteredClientRepository(ClientRepository clientRepository) {
+
+
+    public JpaOAuth2AuthorizationService(ClientRepository clientRepository) {
         Assert.notNull(clientRepository, "clientRepository cannot be null");
         this.clientRepository = clientRepository;
 
